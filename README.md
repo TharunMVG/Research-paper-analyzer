@@ -1,6 +1,5 @@
 # Gen AI System for Identifying Research Gaps and Future Directions in Scientific Literature
 
-> **Unlock new research directions with AI.**  
 This project automatically collects open-access research papers, extracts *future work* and *research gaps*, and leverages LLMs to generate **project ideas, research directions, and paper suggestions**.  
 
 ---
