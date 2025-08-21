@@ -9,13 +9,6 @@ import os
 
 class ResearchPaperModelFinetuner:
     def __init__(self, model_name: str = "mistralai/Mistral-7B-v0.1", use_auth_token: str = None):
-        """
-        Initialize the model with authentication handling.
-        
-        Args:
-            model_name: Name of the model to use (default: Mistral-7B)
-            use_auth_token: Hugging Face authentication token (set via env var HF_TOKEN)
-        """
         self.model_name = model_name
         
         # Handle authentication if token is provided
@@ -207,3 +200,4 @@ if __name__ == "__main__":
     test_query = "What is the novelty of this approach?"
     response = finetuner.generate_response(test_paper, test_query)
     print(response)
+
