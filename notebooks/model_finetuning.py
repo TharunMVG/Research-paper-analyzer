@@ -57,7 +57,6 @@ class ResearchPaperModelFinetuner:
             self._initialize_fallback_model()
     
     def _initialize_fallback_model(self):
-        """Initialize a fallback model that doesn't require authentication."""
         try:
             self.model_name = "facebook/opt-1.3b"
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
@@ -87,14 +86,6 @@ class ResearchPaperModelFinetuner:
             raise RuntimeError("Could not initialize any model. Please check your environment and dependencies.")
     
     def prepare_training_data(self, research_papers: list, queries: list, responses: list):
-        """
-        Prepare training data for fine-tuning.
-        
-        Args:
-            research_papers: List of research paper texts
-            queries: List of user queries
-            responses: List of model responses
-        """
         # Create prompt template
         def create_prompt(paper, query, response):
             return f"""Research Paper: {paper}
@@ -117,9 +108,9 @@ Model Response: {response}"""
               gradient_accumulation_steps: int = 4,
               learning_rate: float = 2e-4,
               max_steps: int = -1):
-        """
-        Train the model using LoRA/QLoRA.
-        """
+        
+        #Train the model using LoRA/QLoRA.
+        
         training_args = TrainingArguments(
             output_dir=output_dir,
             num_train_epochs=num_train_epochs,
@@ -200,4 +191,5 @@ if __name__ == "__main__":
     test_query = "What is the novelty of this approach?"
     response = finetuner.generate_response(test_paper, test_query)
     print(response)
+
 
