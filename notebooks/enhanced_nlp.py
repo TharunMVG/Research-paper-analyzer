@@ -30,9 +30,6 @@ except Exception as e:
     sentence_transformer = None
 
 def clean_text(text: str) -> str:
-    """
-    Enhanced text cleaning with more sophisticated preprocessing.
-    """
     text = text.lower()
     text = re.sub(r"[^a-z0-9\s.,;:!?()]", "", text)
     text = re.sub(r"\s+", " ", text).strip()
@@ -46,26 +43,14 @@ def tokenize_text(text: str) -> List[str]:
     return [token.lemma_ for token in doc if not token.is_stop and not token.is_punct]
 
 def get_pos_tags(text: str) -> List[Tuple[str, str, str]]:
-    """
-    Enhanced POS tagging with dependency parsing.
-    Returns (word, POS tag, dependency role).
-    """
     doc = nlp(text)
     return [(token.text, token.pos_, token.dep_) for token in doc]
 
 def extract_named_entities(text: str) -> List[Tuple[str, str, str]]:
-    """
-    Enhanced named entity recognition with entity linking.
-    Returns (entity text, label, knowledge base ID if available).
-    """
     doc = nlp(text)
     return [(ent.text, ent.label_, ent.kb_id_) for ent in doc.ents]
 
 def get_text_embeddings(texts: List[str]) -> np.ndarray:
-    """
-    Generate embeddings for a list of texts using sentence transformer.
-    Falls back to TF-IDF if sentence transformer is not available.
-    """
     if sentence_transformer is not None:
         return sentence_transformer.encode(texts)
     else:
