@@ -1,0 +1,1 @@
+This folder contains the ipynb notebooks required to deploy the project. The main notebook that needs to be executed is Paper_analyser.ipynb. The other notebooks contain logic for preprocessing the extracted text,
