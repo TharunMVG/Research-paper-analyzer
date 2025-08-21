@@ -36,9 +36,6 @@ def clean_text(text: str) -> str:
     return text
 
 def tokenize_text(text: str) -> List[str]:
-    """
-    Enhanced tokenization with stopword removal and lemmatization.
-    """
     doc = nlp(text)
     return [token.lemma_ for token in doc if not token.is_stop and not token.is_punct]
 
@@ -59,9 +56,6 @@ def get_text_embeddings(texts: List[str]) -> np.ndarray:
         return vectorizer.fit_transform(texts).toarray()
 
 def extract_key_phrases(text: str, top_n: int = 10) -> List[str]:
-    """
-    Extract key phrases using TF-IDF.
-    """
     vectorizer = TfidfVectorizer(max_features=1000)
     tfidf_matrix = vectorizer.fit_transform([text])
     feature_names = vectorizer.get_feature_names_out()
@@ -72,9 +66,6 @@ def extract_key_phrases(text: str, top_n: int = 10) -> List[str]:
     return [feature_names[i] for i in top_indices]
 
 def build_knowledge_graph(text: str) -> nx.Graph:
-    """
-    Build a knowledge graph from the text using named entities and relationships.
-    """
     doc = nlp(text)
     graph = nx.Graph()
     
@@ -93,9 +84,6 @@ def build_knowledge_graph(text: str) -> nx.Graph:
     return graph
 
 def visualize_embeddings(embeddings: np.ndarray, labels: List[str], title: str = "t-SNE Visualization"):
-    """
-    Enhanced visualization with clustering and better annotations.
-    """
     if len(embeddings) == 0:
         print("No embeddings to visualize")
         return
@@ -124,9 +112,6 @@ def visualize_embeddings(embeddings: np.ndarray, labels: List[str], title: str =
     plt.show()
 
 def analyze_research_sections(text: str) -> Dict[str, List[str]]:
-    """
-    Analyze research paper sections and extract key information.
-    """
     sections = {
         "abstract": [],
         "introduction": [],
